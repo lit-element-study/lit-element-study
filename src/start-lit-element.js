@@ -1,4 +1,5 @@
 import { LitElement, html } from 'lit-element';
+import './my-element1.js';
 
 export class StartLitElement extends LitElement {
 
@@ -9,9 +10,6 @@ export class StartLitElement extends LitElement {
     };
   }
 
-  /**  
-   * In the element constructor, assign default property values.
-   */
   constructor() {
     // Must call superconstructor first.
     super();
@@ -30,6 +28,8 @@ export class StartLitElement extends LitElement {
     return html`
       ${style}
       <h1>Start LitElement!</h1>
+      <my-element1></my-element1>
+      <my-tselement1></my-tselement1>
       <p>${this.message}</p>
 
       <input name="myinput" id="myinput" 
@@ -43,11 +43,6 @@ export class StartLitElement extends LitElement {
     `;
   }
 
-  /**
-   * Implement firstUpdated to perform one-time work on first update:
-   * - Call a method to load the lazy element if necessary
-   * - Focus the checkbox
-   */
   firstUpdated() {
     this.loadLazy();
 
@@ -55,20 +50,11 @@ export class StartLitElement extends LitElement {
     myInput.focus();
   }
 
-  /**
-   * Event handler. Gets called whenever the checkbox fires a `change` event.
-   * - Toggle whether to display <lazy-element>
-   * - Call a method to load the lazy element if necessary
-   */
   togglePie(e) {
     this.pie = !this.pie;
     this.loadLazy();
   }
 
-  /**
-   * If we need the lazy element && it hasn't already been loaded, 
-   * load it and remember that we loaded it.
-   */
   async loadLazy() {
     console.log('loadLazy');
     if(this.pie && !this.loadComplete) {
@@ -83,7 +69,6 @@ export class StartLitElement extends LitElement {
   }
 }
 
-// Register the element with the browser
 customElements.define('start-lit-element', StartLitElement);
 
 const style = html`
